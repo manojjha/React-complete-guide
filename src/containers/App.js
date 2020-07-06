@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Person from '../components/Persons/Person/Person';
 import Cockpit from '../components/Cockpit/Cockpit';
+//import { stat } from 'fs-extra';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
 
   state = {
     persons: [
@@ -15,6 +20,15 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   };
+
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] 1 getDerivedStateFromProps', props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log('[app.js] componentdidmount...');
+  }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -48,6 +62,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[app.js] render');
     let persons = null;
 
 
