@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
+//import Person from '../components/Persons/Person/Person';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Persons from '../components/Persons/Persons';
 //import { stat } from 'fs-extra';
 
 class App extends Component {
@@ -67,17 +68,19 @@ class App extends Component {
 
 
     if (this.state.showPersons) {
-      persons = <Person
-        name={this.state.persons}
+      persons = ( 
+      <Persons
+        persons={this.state.persons}
         clicked={this.deletePersonHandler}
         changed={this.nameChangedHandler} />
-        ;
+      );
     }
 
 
     return (
       <div className={classes.App}>
         <Cockpit
+          title = {this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons} 
           clicked={this.togglePersonsHandler}/>
